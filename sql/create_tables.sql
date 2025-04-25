@@ -1,5 +1,3 @@
-START TRANSACTION;
-
 -- Drop tables if they exist
 DROP TABLE IF EXISTS Flight CASCADE;
 DROP TABLE IF EXISTS Airport CASCADE;
@@ -23,10 +21,10 @@ CREATE TABLE Flight (
     Month INT NOT NULL,
     DayOfMonth INT NOT NULL,
     DayOfWeek INT NOT NULL,
-    DepTime TEXT,
-    CRSDepTime TEXT NOT NULL,
-    ArrTime TEXT,
-    CRSArrTime TEXT,
+    DepTime TIME,
+    CRSDepTime TIME NOT NULL,
+    ArrTime TIME,
+    CRSArrTime TIME,
     ActualElapsedTime FLOAT,
     CRSElapsedTime FLOAT,
     AirTime FLOAT,
@@ -46,5 +44,3 @@ CREATE TABLE Flight (
     SecurityDelay FLOAT,
     LateAircraftDelay FLOAT
 );
-
-COMMIT;
