@@ -12,7 +12,7 @@ with open(file, "r") as file:
 
 # build connection string
 # Correct connection string using the hostname
-conn_string = "host=10.100.30.57 port=5432 user=team15 dbname=team15_projectdb password={}".format(password)
+conn_string = "host=hadoop-04.uni.innopolis.ru port=5432 user=team15 dbname=team15_projectdb password={}".format(password)
 
 # Connect to the remote dbms
 with psql.connect(conn_string) as conn:
