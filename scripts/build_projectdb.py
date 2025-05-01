@@ -38,7 +38,7 @@ with psql.connect(conn_string) as conn:
     with open(os.path.join("data", "cancellation_reasons.csv"), "r") as cancel_file:
         cur.copy_expert(commands[1], cancel_file)
 
-    with open(os.path.join("data", "preprocessed_combine_files.csv"), "r") as flight_file:
+    with open(os.path.join("data", "combine_files.csv"), "r") as flight_file:
         cur.copy_expert(commands[2], flight_file)
 
     conn.commit()
