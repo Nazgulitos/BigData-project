@@ -2,5 +2,5 @@ pylint
 pyspark
 pandas
 streamlit
-
 kaggle
+psycopg2-binary
