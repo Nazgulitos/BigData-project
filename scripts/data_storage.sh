@@ -19,7 +19,7 @@ sqoop list-tables --connect jdbc:postgresql://hadoop-04.uni.innopolis.ru/team15_
 
 # 4. Import all tables with Avro format
 echo "Starting Sqoop import..."
-sqoop import-all-tables --connect jdbc:postgresql://hadoop-04.uni.innopolis.ru/team15_projectdb --username team15 --password $password --compression-codec=snappy --compress --as-avrodatafile --warehouse-dir=project/warehouse --outdir ~/BigData-project/output --m 1
+sqoop import-all-tables --connect jdbc:postgresql://hadoop-04.uni.innopolis.ru/team15_projectdb --username team15 --password $password --compression-codec=snappy --compress --as-avrodatafile --warehouse-dir=project/warehouse --outdir ~/output --m 1
 
 # Verify import succeeded
 if [ $? -eq 0 ]; then
