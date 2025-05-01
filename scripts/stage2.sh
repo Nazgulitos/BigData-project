@@ -1,4 +1,7 @@
 #!/bin/bash
+hdfs dfs -mkdir -p project/warehouse/avsc
+
+hdfs dfs -put output/*.avsc project/warehouse/avsc
 
 password=$(head -n 1 secrets/.hive.pass)
 
