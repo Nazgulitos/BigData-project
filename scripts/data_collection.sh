@@ -1,5 +1,8 @@
 echo "Data Collection is starting..."
 
+rm -rf data
+mkdir -p data
+
 # Download .csv file from Kaggle
 kaggle datasets download -d rulyjanuarfachmi/domesticusairflight2016-2018 -p data/
 
