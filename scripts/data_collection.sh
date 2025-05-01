@@ -17,7 +17,7 @@ unzip data/domesticusairflight2016-2018.zip -d data/
 python3 scripts/data_preprocess.py
 
 # Delete the combined_data.csv file after preprocessing
-rm data/combine_files.csv
+# rm data/combine_files.csv
 
 # Clean up unnecessary files
 rm -rf data/domesticusairflight2016-2018
