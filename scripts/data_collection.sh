@@ -11,7 +11,7 @@ kaggle datasets download -d rulyjanuarfachmi/domesticusairflight2016-2018 -p dat
 unzip data/domesticusairflight2016-2018.zip -d data/
 
 # Move the combined_data.csv file to the data folder
-cp data/combine_files.csv data/
+# cp data/combine_files.csv data/
 
 #Run the data preprocessing script
 python3 scripts/data_preprocess.py
