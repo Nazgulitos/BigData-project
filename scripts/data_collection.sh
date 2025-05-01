@@ -1,5 +1,6 @@
 echo "Data Collection is starting..."
 
+echo "Cleaning data folder"
 rm -rf data
 mkdir -p data
 
@@ -12,7 +13,7 @@ unzip data/domesticusairflight2016-2018.zip -d data/
 # Move the combined_data.csv file to the data folder
 cp data/combine_files.csv data/
 
-Run the data preprocessing script
+#Run the data preprocessing script
 python3 scripts/data_preprocess.py
 
 # Delete the combined_data.csv file after preprocessing
