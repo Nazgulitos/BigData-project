@@ -9,7 +9,7 @@ password=$(head -n 1 secrets/.psql.pass)
 
 # 1. Clear existing HDFS warehouse directory
 echo "Clearing previous HDFS data..."
-hdfs dfs -rm -r /user/team15/project/warehouse 2>/dev/null  # Suppress error if dir doesn't exist
+hdfs dfs -rm -r -skipTrash /user/team15/project/warehouse 2>/dev/null
 
 # 2. List Databases
 sqoop list-databases --connect jdbc:postgresql://hadoop-04.uni.innopolis.ru/team15_projectdb --username team15 --password $password
