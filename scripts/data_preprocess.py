@@ -17,20 +17,20 @@ df_final = pd.read_csv("./data/combine_files.csv")
 # Create a copy of the balanced DataFrame for further processing
 # df_final = df_balanced.copy()
 
-# Function to convert hhmm time columns to datetime.time format
-def hhmm_to_time(x):
-    if pd.isnull(x):
-        return None
-    x = int(x)
-    h = x // 100
-    m = x % 100
-    if h < 24 and m < 60:
-        return time(hour=h, minute=m)
-    return None
+# # Function to convert hhmm time columns to datetime.time format
+# def hhmm_to_time(x):
+#     if pd.isnull(x):
+#         return None
+#     x = int(x)
+#     h = x // 100
+#     m = x % 100
+#     if h < 24 and m < 60:
+#         return time(hour=h, minute=m)
+#     return None
 
-# Apply the time conversion function to specific columns
-for col in ['DepTime', 'CRSDepTime', 'ArrTime', 'CRSArrTime']:
-    df_final[col] = df_final[col].apply(hhmm_to_time)
+# # Apply the time conversion function to specific columns
+# for col in ['DepTime', 'CRSDepTime', 'ArrTime', 'CRSArrTime']:
+#     df_final[col] = df_final[col].apply(hhmm_to_time)
 
 # Save the preprocessed DataFrame to a new CSV file
 df_final.to_csv("./data/preprocessed_combine_files.csv", index=False)
