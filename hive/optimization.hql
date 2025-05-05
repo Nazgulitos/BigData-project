@@ -3,7 +3,7 @@ USE team15_projectdb;
 SET hive.exec.dynamic.partition=true;
 SET hive.exec.dynamic.partition.mode=nonstrict;
 SET hive.enforce.bucketing = true; 
-SET hive.exec.max.dynamic.partitions=2000;
+SET hive.exec.max.dynamic.partitions=5000;
 SET hive.exec.max.dynamic.partitions.pernode=5000;
 
 SET hive.tez.container.size=4096;
