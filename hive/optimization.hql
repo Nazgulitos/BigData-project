@@ -6,6 +6,8 @@ SET hive.enforce.bucketing = true;
 SET hive.exec.max.dynamic.partitions=2000;
 SET hive.exec.max.dynamic.partitions.pernode=1000;
 
+SET parquet.memory.min.allocation.size=1048576;
+
 DROP TABLE IF EXISTS flight_optimized;
 DROP TABLE IF EXISTS airport_optimized;
 
