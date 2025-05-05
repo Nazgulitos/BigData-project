@@ -11,8 +11,8 @@ DROP TABLE IF EXISTS airport_optimized;
 
 CREATE EXTERNAL TABLE flight_optimized(
   flightid INT,      
-  originairportid INT,
-  destairportid INT,
+  origin STRING,
+  dest STRING,
   cancelled INT,
   cancellationcode STRING,
   arrdelay INT, 
@@ -40,8 +40,8 @@ TBLPROPERTIES ('parquet.compress'='SNAPPY');
 INSERT OVERWRITE TABLE flight_optimized PARTITION(flight_dt)
 SELECT
   flightid,
-  originairportid,
-  destairportid,
+  origin,
+  dest,
   cancelled,
   cancellationcode,
   arrdelay,
