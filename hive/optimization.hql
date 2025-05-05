@@ -58,6 +58,4 @@ FROM airport;
 DROP TABLE IF EXISTS flight;
 DROP TABLE IF EXISTS airport;
 
-ALTER TABLE cancellationreason_external RENAME TO cancellationreason; 
-
 SHOW TABLES; 
