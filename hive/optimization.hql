@@ -47,7 +47,7 @@ SELECT
   arrdelay,
   depdelay,
   TO_DATE(from_unixtime(CAST(flightdate / 1000 AS BIGINT))) AS flight_dt 
-FROM flight_external; 
+FROM flight;
 
 INSERT OVERWRITE TABLE airport_optimized
 SELECT
@@ -55,10 +55,10 @@ SELECT
   city,
   state,
   name
-FROM airport_external;
+FROM airport;
 
-DROP TABLE IF EXISTS flight_external;
-DROP TABLE IF EXISTS airport_external;
+DROP TABLE IF EXISTS flight;
+DROP TABLE IF EXISTS airport;
 
 ALTER TABLE cancellationreason_external RENAME TO cancellationreason; 
 
