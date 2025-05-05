@@ -16,8 +16,7 @@ CREATE EXTERNAL TABLE flight_optimized(
   cancelled INT,
   cancellationcode STRING,
   arrdelay INT, 
-  depdelay INT,
-  flightdate BIGINT
+  depdelay INT
 )
 
 PARTITIONED BY (flight_dt DATE) 
@@ -46,12 +45,14 @@ SELECT
   cancellationcode,
   arrdelay,
   depdelay,
-  TO_DATE(from_unixtime(CAST(flightdate / 1000 AS BIGINT))) AS flight_dt 
+-- TO_DATE(from_unixtime(CAST(flightdate / 1000 AS BIGINT))) AS flight_dt 
+  make_date(year, month, dayofmonth) AS flight_dt  
+
 FROM flight;
 
 INSERT OVERWRITE TABLE airport_optimized
 SELECT
-  airportid,
+  code,
   city,
   state,
   name
