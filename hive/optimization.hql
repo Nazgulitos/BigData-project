@@ -46,8 +46,7 @@ SELECT
   arrdelay,
   depdelay,
 -- TO_DATE(from_unixtime(CAST(flightdate / 1000 AS BIGINT))) AS flight_dt 
-  make_date(year, month, dayofmonth) AS flight_dt  
-
+  CAST(CONCAT_WS('-', CAST(year AS STRING), LPAD(CAST(month AS STRING), 2, '0'), LPAD(CAST(dayofmonth AS STRING), 2, '0')) AS DATE) AS flight_dt 
 FROM flight;
 
 INSERT OVERWRITE TABLE airport_optimized
