@@ -27,12 +27,12 @@ LOCATION 'project/hive/warehouse/flight_optimized'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
 CREATE EXTERNAL TABLE airport_optimized(
-  airportid INT,    
+  code STRING,    
   city STRING,
   state STRING,
   name STRING
 )
-CLUSTERED BY (airportid) INTO 4 BUCKETS 
+CLUSTERED BY (code) INTO 4 BUCKETS 
 STORED AS PARQUET
 LOCATION 'project/hive/warehouse/airport_optimized'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
