@@ -42,15 +42,13 @@ CREATE EXTERNAL TABLE flight_temp (
     LateAircraftDelay FLOAT
 )
 STORED AS PARQUET
-LOCATION 'project/warehouse/flight_temp'
+LOCATION 'project/hive/warehouse/flight_temp'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
 -- Insert data into the staging table from the original AVRO flight table
 INSERT OVERWRITE TABLE flight_temp
 SELECT *
 FROM flight;
-
-DROP TABLE IF EXISTS flight;
 
 
 -- Create the optimized flight table with partitioning and bucketing
@@ -84,7 +82,7 @@ CREATE EXTERNAL TABLE flight (
 PARTITIONED BY (Year_partition INT, Month_partition INT)
 CLUSTERED BY (Origin) INTO 32 BUCKETS
 STORED AS PARQUET
-LOCATION 'project/warehouse/flight'
+LOCATION 'project/hive/warehouse/flight_optimized'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
 -- Insert data into the partitioned and bucketed table
