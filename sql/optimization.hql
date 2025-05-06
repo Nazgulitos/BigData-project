@@ -14,7 +14,7 @@ DROP TABLE IF EXISTS flight_optimized;
 DROP TABLE IF EXISTS airport_optimized;
 
 CREATE EXTERNAL TABLE flight (
-    FlightID SERIAL,
+    FlightID BIGINT,
     DayOfMonth INT,
     DayOfWeek INT,
     DepTime FLOAT,
