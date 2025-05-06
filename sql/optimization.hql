@@ -13,7 +13,6 @@ SET parquet.block.size=134217728;
 
 -- Drop the existing tables
 DROP TABLE IF EXISTS flight_temp;
-DROP TABLE IF EXISTS flight;
 
 -- Create a staging table to match the original AVRO flight table, using Parquet
 CREATE EXTERNAL TABLE flight_temp (
