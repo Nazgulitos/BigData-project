@@ -10,8 +10,6 @@ SET hive.tez.container.size=4096;
 SET parquet.memory.min.allocation.size=2097152;
 
 DROP TABLE IF EXISTS flight;
-DROP TABLE IF EXISTS flight_optimized;
-DROP TABLE IF EXISTS airport_optimized;
 
 CREATE EXTERNAL TABLE flight (
     FlightID BIGINT,
@@ -40,7 +38,7 @@ CREATE EXTERNAL TABLE flight (
     SecurityDelay FLOAT,
     LateAircraftDelay FLOAT
 )
-PARTITIONED BY (Year INT, Month INT)
+PARTITIONED BY (Year_test INT, Month_test INT)
 CLUSTERED BY (Origin) INTO 32 BUCKETS
 STORED AS AVRO
 LOCATION 'project/warehouse/flight'
@@ -48,7 +46,7 @@ TBLPROPERTIES ('avro.schema.url'='project/warehouse/avsc/flight.avsc');
 
 
 CREATE EXTERNAL TABLE flight_temp (
-    FlightID SERIAL,
+    FlightID BIGINT,
     Year INT,
     Month INT,
     DayOfMonth INT,
@@ -62,13 +60,13 @@ CREATE EXTERNAL TABLE flight_temp (
     AirTime FLOAT,
     ArrDelay FLOAT,
     DepDelay FLOAT,
-    Origin TEXT,
-    Dest TEXT,
+    Origin STRING,
+    Dest STRING,
     Distance FLOAT,
     TaxiIn FLOAT,
     TaxiOut FLOAT,
     Cancelled FLOAT,
-    CancellationCode TEXT,
+    CancellationCode STRING,
     Diverted FLOAT,
     CarrierDelay FLOAT,
     WeatherDelay FLOAT,
@@ -81,7 +79,7 @@ LOCATION 'project/warehouse/flight'
 TBLPROPERTIES ('avro.schema.url'='project/warehouse/avsc/flight.avsc');
 
 INSERT INTO TABLE flight
-PARTITION (Year, Month)
+PARTITION (Year_test, Month_test)
 SELECT 
     FlightID,
     DayOfMonth,
@@ -108,8 +106,8 @@ SELECT
     NASDelay,
     SecurityDelay,
     LateAircraftDelay,
-    Year,
-    Month
+    Year AS Year_test,
+    Month AS Month_test
 FROM flight_temp;
 
 DROP TABLE IF EXISTS flight_temp;
