@@ -11,9 +11,6 @@ SET parquet.memory.min.allocation.size=2097152;
 SET hive.tez.auto.reducer.parallelism=true;
 SET parquet.block.size=134217728;
 
--- Drop the existing tables
-DROP TABLE IF EXISTS flight_temp;
-
 -- Create a staging table to match the original AVRO flight table, using Parquet
 CREATE EXTERNAL TABLE flight_temp (
     FlightID BIGINT,
@@ -53,8 +50,6 @@ INSERT OVERWRITE TABLE flight_temp
 SELECT *
 FROM flight;
 
-ANALYZE TABLE flight COMPUTE STATISTICS;
-ANALYZE TABLE flight COMPUTE STATISTICS FOR COLUMNS;
 DROP TABLE IF EXISTS flight;
 
 
@@ -124,10 +119,6 @@ SELECT
     Year AS Year_partition,
     Month AS Month_partition
 FROM flight_temp;
-
--- Compute statistics for better query planning
-ANALYZE TABLE flight COMPUTE STATISTICS;
-ANALYZE TABLE flight COMPUTE STATISTICS FOR COLUMNS;
 
 -- Drop the staging table
 DROP TABLE IF EXISTS flight_temp;
