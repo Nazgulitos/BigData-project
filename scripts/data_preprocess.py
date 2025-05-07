@@ -5,9 +5,9 @@ import numpy as np
 dtypes = {
     'Year': 'int32',
     'Month': 'int8',
-    'Day': 'int8',  # Adjust to 'DayOfMonth' if needed
+    'Day': 'int8',
     'DayOfWeek': 'int8',
-    'DepTime': 'Int32',  # Nullable integer for minutes since midnight
+    'DepTime': 'Int32',
     'CRSDepTime': 'Int32',
     'ArrTime': 'Int32',
     'CRSArrTime': 'Int32',
@@ -31,29 +31,42 @@ dtypes = {
     'LateAircraftDelay': 'float32'
 }
 
-# Initialize set to collect unique airport codes
+# Set of all unique airport codes
 all_airports = set()
 
-# Process CSV in chunks to avoid memory errors
-chunk_size = 1000000  # Adjust based on available memory
-chunks = pd.read_csv("./data/combine_files.csv", dtype=dtypes, chunksize=chunk_size)
+# Output CSV with only required columns
+output_csv = "data/combine_files_upd.csv"
+chunk_size = 1_000_000
+first_chunk = True
 
-# Collect processed chunks and airport codes
-processed_chunks = []
-for chunk in chunks:
-    # Extract unique airports from this chunk
-    chunk_airports = pd.Series(pd.concat([chunk["Origin"], chunk["Dest"]])).dropna().unique()
-    all_airports.update(chunk_airports)
-    processed_chunks.append(chunk)
+# Columns to drop
+columns_to_drop = [
+    'CarrierDelay',
+    'WeatherDelay',
+    'NASDelay',
+    'SecurityDelay',
+    'LateAircraftDelay'
+]
 
-# Concatenate chunks into final DataFrame
-df_final = pd.concat(processed_chunks, ignore_index=True)
+# Process chunks
+with open(output_csv, "w") as f_out:
+    for chunk in pd.read_csv("./data/combine_files.csv", dtype=dtypes, chunksize=chunk_size):
+        # Drop unused columns
+        chunk.drop(columns=columns_to_drop, inplace=True)
 
-# Save unique airport codes
-airports_df = pd.DataFrame({"Code": list(all_airports)})
+        # Collect unique airport codes
+        all_airports.update(chunk["Origin"].dropna().unique())
+        all_airports.update(chunk["Dest"].dropna().unique())
+
+        # Write cleaned chunk to file
+        chunk.to_csv(f_out, index=False, header=first_chunk)
+        first_chunk = False
+
+# Save airport codes
+airports_df = pd.DataFrame({"Code": sorted(all_airports)})
 airports_df.to_csv("data/airports.csv", index=False)
 
-# Create cancellation reasons table
+# Save cancellation reasons
 cancellation_reasons = pd.DataFrame({
     "Code": ["A", "B", "C", "D"],
     "Description": ["Carrier", "Weather", "NAS", "Security"]

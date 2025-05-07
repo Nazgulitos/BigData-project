@@ -1,8 +1,6 @@
 from pyspark.sql import SparkSession
 
 team = "team15"
-
-# location of your Hive database in HDFS
 warehouse = "project/hive/warehouse"
 
 spark = SparkSession.builder\
@@ -15,5 +13,3 @@ spark = SparkSession.builder\
         .getOrCreate()
 
 print("Spark Session Created.")
-print(f"Spark version: {spark.version}")
-

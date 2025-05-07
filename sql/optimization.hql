@@ -34,12 +34,7 @@ CREATE EXTERNAL TABLE flight_temp (
     TaxiOut FLOAT,
     Cancelled FLOAT,
     CancellationCode STRING,
-    Diverted FLOAT,
-    CarrierDelay FLOAT,
-    WeatherDelay FLOAT,
-    NASDelay FLOAT,
-    SecurityDelay FLOAT,
-    LateAircraftDelay FLOAT
+    Diverted FLOAT
 )
 STORED AS PARQUET
 LOCATION 'project/hive/warehouse/flight_temp'
@@ -72,12 +67,7 @@ CREATE EXTERNAL TABLE flight_optimized (
     TaxiOut FLOAT,
     Cancelled FLOAT,
     CancellationCode STRING,
-    Diverted FLOAT,
-    CarrierDelay FLOAT,
-    WeatherDelay FLOAT,
-    NASDelay FLOAT,
-    SecurityDelay FLOAT,
-    LateAircraftDelay FLOAT
+    Diverted FLOAT
 )
 PARTITIONED BY (Year_partition INT, Month_partition INT)
 CLUSTERED BY (Origin) INTO 32 BUCKETS
@@ -109,11 +99,6 @@ SELECT
     Cancelled,
     CancellationCode,
     Diverted,
-    CarrierDelay,
-    WeatherDelay,
-    NASDelay,
-    SecurityDelay,
-    LateAircraftDelay,
     Year AS Year_partition,
     Month AS Month_partition
 FROM flight_temp;
