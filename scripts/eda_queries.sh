@@ -9,11 +9,11 @@ beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password
 if [ $? -ne 0 ]; then echo "Warn: Q1 failed."; fi
 
 echo "Q2: Cancellations by Month..."
-beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" --hiveconf hive.resultset.use.unique.column.names=false -f sql/chart2.hql > output/chart2.csv 2>/dev/null
+beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" --hiveconf hive.resultset.use.unique.column.names=false -f sql/chart2.hql > output/chart2.csv
 if [ $? -ne 0 ]; then echo "Warn: Q2 failed."; fi
 
 echo "Q3: Top Origin Airport Cancellations..."
-beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" --hiveconf hive.resultset.use.unique.column.names=false -f sql/chart3.hql > output/chart3.csv 2>/dev/null
+beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" --hiveconf hive.resultset.use.unique.column.names=false -f sql/chart3.hql > output/chart3.csv
 if [ $? -ne 0 ]; then echo "Warn: Q3 failed."; fi
 
 echo "Q4: Top Cancellation Reasons..."
