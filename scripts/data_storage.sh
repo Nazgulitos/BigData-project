@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# echo "Building Postgres database is starting!"
-# python scripts/build_projectdb.py
-# echo "Building Postgres database is done!"
+echo "Building Postgres database is starting!"
+python scripts/build_projectdb.py
+echo "Building Postgres database is done!"
 
 echo "Copying data into HDFS starts.."
 password=$(head -n 1 secrets/.psql.pass)

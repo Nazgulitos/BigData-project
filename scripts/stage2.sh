@@ -1,6 +1,5 @@
 #!/bin/bash
 
-hdfs dfs -rm -r -skipTrash /user/team15/project/warehouse/avsc 2>/dev/null
 hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/flight_optimized 2>/dev/null
 hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/airport_optimized 2>/dev/null
 hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/cancellationreason_optimized 2>/dev/null
@@ -16,6 +15,4 @@ beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p $password 
 beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p $password -f sql/db.hql > output/hive_results.txt
 
 beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" -f sql/optimization.hql
-
-hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/flight_temp 2>/dev/null
 
