@@ -49,17 +49,23 @@ for chunk in chunks:
 # Concatenate chunks into final DataFrame
 df_final = pd.concat(processed_chunks, ignore_index=True)
 
-# Drop unnecessary delay columns
-df_final.drop(columns=[
-    'CarrierDelay',
-    'WeatherDelay',
-    'NASDelay',
-    'SecurityDelay',
-    'LateAircraftDelay'
-], inplace=True)
+with open("data/combine_files_upd.csv", "w") as f:
+    first = True
+    for chunk in pd.read_csv("./data/combine_files.csv", dtype=dtypes, chunksize=chunk_size):
+        chunk.drop(columns=[
+            'CarrierDelay',
+            'WeatherDelay',
+            'NASDelay',
+            'SecurityDelay',
+            'LateAircraftDelay'
+        ], inplace=True)
 
-# Save the cleaned DataFrame back to CSV
-df_final.to_csv("data/combine_files_upd.csv", index=False)
+        # Extract airports
+        chunk_airports = pd.Series(pd.concat([chunk["Origin"], chunk["Dest"]])).dropna().unique()
+        all_airports.update(chunk_airports)
+
+        chunk.to_csv(f, index=False, header=first)
+        first = False
 
 # Save unique airport codes
 airports_df = pd.DataFrame({"Code": list(all_airports)})
