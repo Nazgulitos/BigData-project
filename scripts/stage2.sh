@@ -2,7 +2,7 @@
 
 hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/flight_optimized 2>/dev/null
 hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/airport_optimized 2>/dev/null
-hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/cancellationreason_optimized 2>/dev/null
+hdfs dfs -rm -r -skipTrash /user/team15/project/hive/warehouse/cancellationreason 2>/dev/null
 
 hdfs dfs -mkdir -p project/warehouse/avsc
 
