@@ -145,14 +145,12 @@ STORED AS PARQUET
 LOCATION 'project/hive/warehouse/cancellationreason'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
-INSERT OVERWRITE TABLE cancellation_reason
+INSERT OVERWRITE TABLE cancellationreason_optimized
 SELECT Code, Description
 FROM cancellationreason;
 
 -- Verify the new table structure and data
 SHOW TABLES;
-SHOW PARTITIONS flight;
-DESCRIBE FORMATTED flight;
-SELECT * FROM flight LIMIT 5;
-
-SELECT * FROM airport_optimized LIMIT 5;
+SHOW PARTITIONS flight_optimized;
+DESCRIBE FORMATTED flight_optimized;
+SELECT * FROM flight_optimized LIMIT 5;
