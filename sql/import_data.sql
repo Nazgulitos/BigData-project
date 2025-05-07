@@ -9,7 +9,6 @@ COPY Flight (
     DepTime, CRSDepTime, ArrTime, CRSArrTime,
     ActualElapsedTime, CRSElapsedTime, AirTime, 
     ArrDelay, DepDelay, Origin, Dest, Distance, 
-    TaxiIn, TaxiOut, Cancelled, CancellationCode, Diverted, 
-    CarrierDelay, WeatherDelay, NASDelay, SecurityDelay, LateAircraftDelay
+    TaxiIn, TaxiOut, Cancelled, CancellationCode, Diverted
 )
 FROM STDIN WITH (FORMAT csv, HEADER true);

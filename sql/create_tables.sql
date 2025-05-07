@@ -37,10 +37,5 @@ CREATE TABLE Flight (
     TaxiOut FLOAT,
     Cancelled FLOAT,
     CancellationCode TEXT REFERENCES CancellationReason(Code),
-    Diverted FLOAT,
-    CarrierDelay FLOAT,
-    WeatherDelay FLOAT,
-    NASDelay FLOAT,
-    SecurityDelay FLOAT,
-    LateAircraftDelay FLOAT
+    Diverted FLOAT
 );
