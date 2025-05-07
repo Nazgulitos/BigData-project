@@ -5,9 +5,9 @@ import numpy as np
 dtypes = {
     'Year': 'int32',
     'Month': 'int8',
-    'Day': 'int8',  # Adjust to 'DayOfMonth' if needed
+    'Day': 'int8',
     'DayOfWeek': 'int8',
-    'DepTime': 'Int32',  # Nullable integer for minutes since midnight
+    'DepTime': 'Int32',
     'CRSDepTime': 'Int32',
     'ArrTime': 'Int32',
     'CRSArrTime': 'Int32',
@@ -59,7 +59,7 @@ df_final.drop(columns=[
 ], inplace=True)
 
 # Save the cleaned DataFrame back to CSV
-df_final.to_csv("./data/combine_files.csv", index=False)
+df_final.to_csv("data/combine_files_upd.csv", index=False)
 
 # Save unique airport codes
 airports_df = pd.DataFrame({"Code": list(all_airports)})
