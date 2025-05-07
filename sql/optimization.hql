@@ -52,7 +52,7 @@ FROM flight;
 
 
 -- Create the optimized flight table with partitioning and bucketing
-CREATE EXTERNAL TABLE flight (
+CREATE EXTERNAL TABLE flight_optimized (
     FlightID BIGINT,
     DayOfMonth INT,
     DayOfWeek INT,
@@ -86,7 +86,7 @@ LOCATION 'project/hive/warehouse/flight_optimized'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
 -- Insert data into the partitioned and bucketed table
-INSERT INTO TABLE flight
+INSERT INTO TABLE flight_optimized
 PARTITION (Year_partition, Month_partition)
 SELECT 
     FlightID,
@@ -121,8 +121,38 @@ FROM flight_temp;
 -- Drop the staging table
 DROP TABLE IF EXISTS flight_temp;
 
+CREATE EXTERNAL TABLE airport_optimized(
+  code STRING  
+)
+CLUSTERED BY (code) INTO 4 BUCKETS 
+STORED AS PARQUET
+LOCATION 'project/hive/warehouse/airport_optimized'
+TBLPROPERTIES ('parquet.compress'='SNAPPY');
+
+INSERT OVERWRITE TABLE airport_optimized
+SELECT
+  code
+FROM airport;
+
+
+-- Create optimized external table for cancellation reasons
+CREATE EXTERNAL TABLE cancellationreason_optimized (
+    Code STRING,
+    Description STRING
+)
+CLUSTERED BY (Code) INTO 2 BUCKETS
+STORED AS PARQUET
+LOCATION 'project/hive/warehouse/cancellationreason'
+TBLPROPERTIES ('parquet.compress'='SNAPPY');
+
+INSERT OVERWRITE TABLE cancellation_reason
+SELECT Code, Description
+FROM cancellationreason;
+
 -- Verify the new table structure and data
 SHOW TABLES;
 SHOW PARTITIONS flight;
 DESCRIBE FORMATTED flight;
 SELECT * FROM flight LIMIT 5;
+
+SELECT * FROM airport_optimized LIMIT 5;
