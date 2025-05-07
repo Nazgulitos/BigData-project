@@ -6,10 +6,10 @@ LOCATION 'project/hive/warehouse/q5_results';
 
 INSERT OVERWRITE TABLE q5_results
 SELECT
-    dayofweek AS day_of_week,
+    dayofweek AS day_of_week, 
     SUM(CAST(cancelled AS INT)) / COUNT(flightid) AS cancellation_rate,
     COUNT(flightid) as total_flights
-FROM flight
+FROM flight_optimized
 GROUP BY dayofweek
 ORDER BY day_of_week;
 

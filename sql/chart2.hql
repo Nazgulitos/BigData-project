@@ -6,9 +6,9 @@ LOCATION 'project/hive/warehouse/q2_results';
 
 INSERT OVERWRITE TABLE q2_results
 SELECT
-    month_partition AS flight_month,
+    month_partition AS flight_month, -- Используем колонку партиции из таблицы flight
     SUM(CAST(cancelled AS INT)) AS total_cancellations
-FROM flight
+FROM flight_optimized
 WHERE CAST(cancelled AS INT) = 1
 GROUP BY month_partition
 ORDER BY flight_month;

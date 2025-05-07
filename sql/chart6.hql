@@ -17,7 +17,7 @@ SELECT
     END AS delay_bucket,
     SUM(CAST(cancelled AS INT)) / COUNT(flightid) AS cancellation_rate,
     COUNT(flightid) as total_flights
-FROM flight
+FROM flight_optimized
 WHERE depdelay IS NOT NULL 
 GROUP BY
     CASE

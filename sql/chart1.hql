@@ -7,7 +7,7 @@ LOCATION 'project/hive/warehouse/q1_results';
 INSERT OVERWRITE TABLE q1_results
 SELECT
     SUM(CAST(cancelled AS INT)) / COUNT(flightid) AS overall_cancellation_rate
-FROM flight;
+FROM flight_optimized;
 
 SET hive.resultset.use.unique.column.names=false; 
 SELECT * FROM q1_results;

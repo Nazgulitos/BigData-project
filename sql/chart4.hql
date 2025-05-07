@@ -8,7 +8,7 @@ INSERT OVERWRITE TABLE q4_results
 SELECT
     cr.description AS reason_description,
     COUNT(f.flightid) AS reason_count
-FROM flight f
+FROM flight_optimized f
 JOIN cancellationreason cr ON f.cancellationcode = cr.code
 WHERE CAST(f.cancelled AS INT) = 1 AND f.cancellationcode IS NOT NULL AND f.cancellationcode != ''
 GROUP BY cr.description
