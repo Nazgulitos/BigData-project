@@ -1,6 +1,6 @@
 #!/bin/bash
 
-password="$1"
+password=$(head -n 1 secrets/.hive.pass)
 
 echo "Starting EDA queries..."
 
