@@ -6,7 +6,7 @@ CREATE EXTERNAL TABLE evaluation_results (
     model STRING,
     auc FLOAT,
     accuracy FLOAT,
-    precision FLOAT,
+    `precision` FLOAT,
     recall FLOAT,
     f1_score FLOAT
 )
