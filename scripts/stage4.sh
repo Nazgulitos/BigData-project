@@ -22,7 +22,7 @@ hdfs dfs -cp /user/team15/project/output/rf_model_predictions.csv /user/team15/p
 
 # === EVALUATION RESULTS ===
 echo "Preparing evaluation results..."
-beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" -f sql/evaluation.hql
+beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" -f sql/evaluation_results.hql
 
 hdfs dfs -rm -r -f /user/team15/project/hive/warehouse/evaluation
 hdfs dfs -mkdir -p /user/team15/project/hive/warehouse/evaluation
