@@ -30,4 +30,4 @@ if [ $? -ne 0 ]; then echo "Warn: Q6 failed."; fi
 
 echo "EDA queries finished."
 
-# beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p s8gVtlsZLomjIPeN --hiveconf hive.resultset.use.unique.column.names=false -f sql/check_count.hql > output/check_count.csv 2>/dev/null
+# beeline -u jdbc:hive2://hadoop-03.uni.innopolis.ru:10001 -n team15 -p "$password" --hiveconf hive.resultset.use.unique.column.names=false -f sql/check_count.hql > output/check_count.csv 2>/dev/null

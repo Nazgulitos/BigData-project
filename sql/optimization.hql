@@ -1,6 +1,5 @@
 USE team15_projectdb;
 
--- Set Hive configurations for partitioning, bucketing, and performance
 SET hive.exec.dynamic.partition=true;
 SET hive.exec.dynamic.partition.mode=nonstrict;
 SET hive.enforce.bucketing=true;
@@ -11,7 +10,6 @@ SET parquet.memory.min.allocation.size=2097152;
 SET hive.tez.auto.reducer.parallelism=true;
 SET parquet.block.size=134217728;
 
--- Create a staging table to match the original AVRO flight table, using Parquet
 CREATE EXTERNAL TABLE flight_temp (
     FlightID BIGINT,
     Year INT,
@@ -40,13 +38,11 @@ STORED AS PARQUET
 LOCATION 'project/hive/warehouse/flight_temp'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
--- Insert data into the staging table from the original AVRO flight table
 INSERT OVERWRITE TABLE flight_temp
 SELECT *
 FROM flight;
 
 
--- Create the optimized flight table with partitioning and bucketing
 CREATE EXTERNAL TABLE flight_optimized (
     FlightID BIGINT,
     DayOfMonth INT,
@@ -75,7 +71,6 @@ STORED AS PARQUET
 LOCATION 'project/hive/warehouse/flight_optimized'
 TBLPROPERTIES ('parquet.compress'='SNAPPY');
 
--- Insert data into the partitioned and bucketed table
 INSERT INTO TABLE flight_optimized
 PARTITION (Year_partition, Month_partition)
 SELECT 
@@ -103,7 +98,6 @@ SELECT
     Month AS Month_partition
 FROM flight_temp;
 
--- Drop the staging table
 DROP TABLE IF EXISTS flight_temp;
 
 CREATE EXTERNAL TABLE airport_optimized(
@@ -120,7 +114,6 @@ SELECT
 FROM airport;
 
 
--- Create optimized external table for cancellation reasons
 CREATE EXTERNAL TABLE cancellationreason_optimized (
     Code STRING,
     Description STRING
@@ -134,7 +127,6 @@ INSERT OVERWRITE TABLE cancellationreason_optimized
 SELECT Code, Description
 FROM cancellationreason;
 
--- Verify the new table structure and data
 SHOW TABLES;
 SHOW PARTITIONS flight_optimized;
 DESCRIBE FORMATTED flight_optimized;
