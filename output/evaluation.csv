@@ -1,0 +1,3 @@
+Model,AUC,Accuracy,Precision,Recall,F1-score
+"LogisticRegressionModel: uid=LogisticRegression_9942d619e73a, numClasses=2, numFeatures=741",0.6958213003410854,0.6415724490278631,0.6378916903211443,0.6518227833703009,0.6447819971870605
+"RandomForestClassificationModel: uid=RandomForestClassifier_7dbb85a09305, numTrees=50, numClasses=2, numFeatures=741",0.7649094722448742,0.6955863569705284,0.6939260264675942,0.6978331342774271,0.6958740961293067
