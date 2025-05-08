@@ -50,6 +50,7 @@ The pipeline performs the following key stages:
 ![output](./output/q4.jpg)
 
 ## Important Notes for Students
+We didn't remove it, just in case.
 
 *   **`main.sh` is Immutable:** You **cannot** change the content of `main.sh`. The grader will run this script as-is to assess your project. Ensure your individual scripts are correctly called and function as expected within `main.sh`.
 *   **Notebooks are for Learning Only:** The `notebooks/` folder is for your exploration. Your final pipeline logic must be in `.py` scripts within the `scripts/` folder. The `notebooks/` folder might be deleted during grading to ensure your pipeline doesn't depend on its content.
