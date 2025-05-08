@@ -18,9 +18,8 @@ The pipeline performs the following key stages:
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Kaggle API Key:** Ensure your `kaggle.json` is set up for downloading datasets.
-4.  **Access to Innopolis University Hadoop Cluster:** Credentials for PostgreSQL, Hive, and HDFS.
-5.  **Secrets:** Create a `secrets/` directory in the project root and add:
+3.  **Access to Innopolis University Hadoop Cluster:** Credentials for PostgreSQL, Hive, and HDFS.
+4.  **Secrets:** Create a `secrets/` directory in the project root and add:
     *   `secrets/.psql.pass`: Containing your PostgreSQL password on a single line.
     *   `secrets/.hive.pass`: Containing your Hive password on a single line.
 
@@ -40,7 +39,9 @@ The pipeline performs the following key stages:
 1.  Ensure all prerequisites are met and secrets are in place.
 2.  From the project root directory, execute:
     ```bash
-    bash main.sh
+    ssh team15@hadoop-01.uni.innopolis.ru -p 22
+    cd BigData-project
+    source ./venv/bin/activate
     ```
 3.  All results and artifacts will be stored in the `output/` directory.
 
