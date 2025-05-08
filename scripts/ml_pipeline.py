@@ -1,8 +1,7 @@
 import math
 import os
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col, udf, sin, cos, pi, hour, minute, dayofmonth, dayofweek, year as f_year
-from pyspark.sql.types import IntegerType, StringType, DoubleType
+from pyspark.sql.types import IntegerType, DoubleType
 from pyspark.sql import functions as F
 
 from pyspark.ml import Pipeline
