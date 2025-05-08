@@ -46,6 +46,9 @@ The pipeline performs the following key stages:
     ```
 3.  All results and artifacts will be stored in the `output/` directory.
 
+## Project Insights
+![output](./output/q4.jpg)
+
 ## Important Notes for Students
 
 *   **`main.sh` is Immutable:** You **cannot** change the content of `main.sh`. The grader will run this script as-is to assess your project. Ensure your individual scripts are correctly called and function as expected within `main.sh`.
