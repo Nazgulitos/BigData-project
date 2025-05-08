@@ -9,10 +9,5 @@ CREATE EXTERNAL TABLE evaluation_results (
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
-LOCATION '/user/team15/project/output/evaluation.csv';
-
--- Query output for charting
-INSERT OVERWRITE DIRECTORY 'project/output/chart_evaluation'
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
-SELECT * FROM evaluation_results;
+STORED AS TEXTFILE
+LOCATION '/user/team15/project/hive/warehouse/evaluation';

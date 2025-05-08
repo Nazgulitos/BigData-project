@@ -9,9 +9,5 @@ CREATE EXTERNAL TABLE lr_predictions (
 )
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
-LOCATION '/user/team15/project/output/lr_model_predictions.csv';
-
-INSERT OVERWRITE DIRECTORY 'project/output/chart_lr_predictions'
-ROW FORMAT DELIMITED
-FIELDS TERMINATED BY ','
-SELECT * FROM lr_predictions;
+STORED AS TEXTFILE
+LOCATION '/user/team15/project/hive/warehouse/lr_predictions';
