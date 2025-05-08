@@ -52,5 +52,3 @@ The pipeline performs the following key stages:
 *   **Notebooks are for Learning Only:** The `notebooks/` folder is for your exploration. Your final pipeline logic must be in `.py` scripts within the `scripts/` folder. The `notebooks/` folder might be deleted during grading to ensure your pipeline doesn't depend on its content.
 *   **Idempotency:** Ensure your scripts can be run multiple times without errors (e.g., by dropping tables/directories before creating them).
 *   **Paths:** All scripts should be runnable from the project's root directory.
-
-Good luck with your project!
