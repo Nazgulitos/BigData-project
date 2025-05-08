@@ -13,5 +13,4 @@ CREATE EXTERNAL TABLE evaluation_results (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-TBLPROPERTIES ("skip.header.line.count"="1")
 LOCATION '/user/team15/project/output/evaluation.csv';

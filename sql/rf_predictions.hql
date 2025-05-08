@@ -9,5 +9,4 @@ CREATE EXTERNAL TABLE rf_predictions (
 ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ','
 STORED AS TEXTFILE
-TBLPROPERTIES ("skip.header.line.count"="1")
 LOCATION '/user/team15/project/hive/warehouse/rf_predictions';
