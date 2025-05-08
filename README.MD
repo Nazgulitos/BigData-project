@@ -18,8 +18,9 @@ The pipeline performs the following key stages:
     ```bash
     pip install -r requirements.txt
     ```
-3.  **Access to Innopolis University Hadoop Cluster:** Credentials for PostgreSQL, Hive, and HDFS.
-4.  **Secrets:** Create a `secrets/` directory in the project root and add:
+3.  **Kaggle API Key:** Ensure your `kaggle.json` is set up for downloading datasets.
+4.  **Access to Innopolis University Hadoop Cluster:** Credentials for PostgreSQL, Hive, and HDFS.
+5.  **Secrets:** Create a `secrets/` directory in the project root and add:
     *   `secrets/.psql.pass`: Containing your PostgreSQL password on a single line.
     *   `secrets/.hive.pass`: Containing your Hive password on a single line.
 
