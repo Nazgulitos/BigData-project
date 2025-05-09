@@ -1,5 +1,14 @@
+"""
+This script preprocesses flight data.
+It performs the following tasks:
+1. Reads the input CSV file in chunks to handle large datasets.
+2. Drops unnecessary columns to reduce data size.
+3. Extracts unique airport codes and saves them to a separate CSV file.
+4. Creates a CSV file for cancellation reasons with predefined codes and descriptions.
+5. Outputs the cleaned and processed data to a new CSV file.
+"""
+
 import pandas as pd
-import numpy as np
 
 dtypes = {
     'Year': 'int32',
@@ -32,11 +41,10 @@ dtypes = {
 
 all_airports = set()
 
-output_csv = "data/combine_files_upd.csv"
-chunk_size = 1_000_000
-first_chunk = True
+OUTPUT_CSV = "data/combine_files_upd.csv"
+CHUNK_SIZE = 1_000_000
+FIRST_CHUNK = True
 
-# Columns to drop
 columns_to_drop = [
     'CarrierDelay',
     'WeatherDelay',
@@ -45,23 +53,19 @@ columns_to_drop = [
     'LateAircraftDelay'
 ]
 
-# Process chunks
-with open(output_csv, "w") as f_out:
-    for chunk in pd.read_csv("./data/combine_files.csv", dtype=dtypes, chunksize=chunk_size):
+with open(OUTPUT_CSV, "w", encoding="utf-8") as f_out:
+    for chunk in pd.read_csv("./data/combine_files.csv", dtype=dtypes, chunksize=CHUNK_SIZE):
         chunk.drop(columns=columns_to_drop, inplace=True)
 
-        # unique airport codes
         all_airports.update(chunk["Origin"].dropna().unique())
         all_airports.update(chunk["Dest"].dropna().unique())
 
-        chunk.to_csv(f_out, index=False, header=first_chunk)
-        first_chunk = False
+        chunk.to_csv(f_out, index=False, header=FIRST_CHUNK)
+        FIRST_CHUNK = False
 
-# airport codes
 airports_df = pd.DataFrame({"Code": sorted(all_airports)})
 airports_df.to_csv("data/airports.csv", index=False)
 
-# cancellation reasons
 cancellation_reasons = pd.DataFrame({
     "Code": ["A", "B", "C", "D"],
     "Description": ["Carrier", "Weather", "NAS", "Security"]

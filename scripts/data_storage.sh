@@ -16,7 +16,7 @@ mkdir -p ~/BigData-project/output
 # 2. List Databases
 sqoop list-databases --connect jdbc:postgresql://hadoop-04.uni.innopolis.ru/team15_projectdb --username team15 --password $password
 
-# 3. List tables (for debugging)
+# 3. List tables
 sqoop list-tables --connect jdbc:postgresql://hadoop-04.uni.innopolis.ru/team15_projectdb --username team15 --password $password
 
 # 4. Import all tables with Avro format
