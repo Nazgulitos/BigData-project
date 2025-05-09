@@ -2,27 +2,31 @@
 
 This repository is a template for the final project of the Big Data course. It provides a structured environment to build an end-to-end pipeline for analyzing US domestic flight data, performing exploratory data analysis (EDA), and building predictive models (e.g., for flight cancellations or delays).
 
-## Project Overview
-
-The pipeline performs the following key stages:
-1.  **Data Collection:** Downloads US flight data from Kaggle and performs initial Python-based preprocessing.
-2.  **Relational DB Storage:** Builds a PostgreSQL database and ingests the preprocessed data.
-3.  **HDFS Ingestion:** Uses Sqoop to import data from PostgreSQL into HDFS as AVRO files with Snappy compression.
-4.  **Data Warehousing & EDA:** Sets up Hive external tables on the HDFS data, performs optimizations, and runs HQL queries for EDA.
-5.  **Predictive Data Analytics:** Uses Spark ML to train, evaluate, and compare models (e.g., Logistic Regression, Random Forest) for predicting flight outcomes.
-
 ## Prerequisites
 
 1.  **Python 3.x**
-2.  **Required Python Packages:**
-    ```bash
-    pip install -r requirements.txt
-    ```
-3.  **Kaggle API Key:** Ensure your `kaggle.json` is set up for downloading datasets.
-4.  **Access to Innopolis University Hadoop Cluster:** Credentials for PostgreSQL, Hive, and HDFS.
-5.  **Secrets:** Create a `secrets/` directory in the project root and add:
+2.  **Access to Innopolis University Hadoop Cluster:** Credentials for PostgreSQL, Hive, and HDFS.
+3.  **Secrets:** Create a `secrets/` directory in the project root and add:
     *   `secrets/.psql.pass`: Containing your PostgreSQL password on a single line.
     *   `secrets/.hive.pass`: Containing your Hive password on a single line.
+
+## How to Run
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/Nazgulitos/BigData-project.git
+    cd BigData-project
+    ```
+2.  From the project root directory, execute:
+    ```bash
+    ssh team15@hadoop-01.uni.innopolis.ru -p 22
+    cd BigData-project
+    python3 -m venv venv
+    source ./venv/bin/activate
+    pip install -r requirements.txt
+    bash main.sh
+    ```
+3.  All results and artifacts will be stored in the `output/` directory.
 
 ## Project Structure
 
@@ -35,19 +39,14 @@ The pipeline performs the following key stages:
 -   `requirements.txt`: Python package dependencies.
 -   `main.sh`: The **main script** to execute the entire pipeline.
 
-## How to Run
+## Project Overview
 
-1.  Ensure all prerequisites are met and secrets are in place.
-2.  From the project root directory, execute:
-    ```bash
-    ssh team15@hadoop-01.uni.innopolis.ru -p 22
-    cd BigData-project
-    source ./venv/bin/activate
-    ```
-3.  All results and artifacts will be stored in the `output/` directory.
-
-## Project Insights
-![output](./output/q4.jpg)
+The pipeline performs the following key stages:
+1.  **Data Collection:** Downloads US flight data from Kaggle and performs initial Python-based preprocessing.
+2.  **Relational DB Storage:** Builds a PostgreSQL database and ingests the preprocessed data.
+3.  **HDFS Ingestion:** Uses Sqoop to import data from PostgreSQL into HDFS as AVRO files with Snappy compression.
+4.  **Data Warehousing & EDA:** Sets up Hive external tables on the HDFS data, performs optimizations, and runs HQL queries for EDA.
+5.  **Predictive Data Analytics:** Uses Spark ML to train, evaluate, and compare models (e.g., Logistic Regression, Random Forest) for predicting flight outcomes.
 
 ## Important Notes for Students
 We didn't remove it, just in case.
