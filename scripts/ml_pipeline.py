@@ -192,15 +192,10 @@ FEATURES = "features"
 
 # Define ML model 1 - Logistic Regression
 lr = LogisticRegression(labelCol=LABEL, featuresCol=FEATURES)
-# paramGrid_lr = ParamGridBuilder() \
-#     .addGrid(lr.regParam, [0.01, 0.1, 0.5]) \
-#     .addGrid(lr.elasticNetParam, [0.0, 0.5, 1.0]) \
-#     .addGrid(lr.maxIter, [10, 50]) \
-#     .build()
 paramGrid_lr = ParamGridBuilder() \
-    .addGrid(lr.regParam, [0.01]) \
-    .addGrid(lr.elasticNetParam, [0.0]) \
-    .addGrid(lr.maxIter, [50]) \
+    .addGrid(lr.regParam, [0.01, 0.1, 0.5]) \
+    .addGrid(lr.elasticNetParam, [0.0, 0.5, 1.0]) \
+    .addGrid(lr.maxIter, [10, 50]) \
     .build()
 evaluator1 = BinaryClassificationEvaluator(
     labelCol=LABEL, rawPredictionCol="rawPrediction", metricName="areaUnderROC")
@@ -274,15 +269,10 @@ print("\n ---- Logistic Regression model predictions saved.\n")
 
 # Define ML model 2 - Random Forest
 rf = RandomForestClassifier(labelCol=LABEL, featuresCol=FEATURES, seed=42)
-# paramGrid_rf = ParamGridBuilder() \
-#     .addGrid(rf.numTrees, [20, 50]) \
-#     .addGrid(rf.maxDepth, [5, 10, 15]) \
-#     .addGrid(rf.featureSubsetStrategy, ["sqrt", "log2"]) \
-#     .build()
 paramGrid_rf = ParamGridBuilder() \
-    .addGrid(rf.numTrees, [50]) \
-    .addGrid(rf.maxDepth, [15]) \
-    .addGrid(rf.featureSubsetStrategy, ["sqrt"]) \
+    .addGrid(rf.numTrees, [20, 50]) \
+    .addGrid(rf.maxDepth, [5, 10, 15]) \
+    .addGrid(rf.featureSubsetStrategy, ["sqrt", "log2"]) \
     .build()
 evaluator2 = BinaryClassificationEvaluator(
     labelCol=LABEL, rawPredictionCol="rawPrediction", metricName="areaUnderROC")
